@@ -29,6 +29,13 @@
       "required": false,
       "fieldType": "Boolean",
       "dataType": "boolean"
+    },
+    "coverImage": {
+      "title": "CoverImage",
+      "description": "",
+      "required": false,
+      "fieldType": "Image",
+      "dataType": "image"
     }
   }
 }
