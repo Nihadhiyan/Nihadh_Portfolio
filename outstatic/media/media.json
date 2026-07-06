@@ -1,6 +1,6 @@
 {
-  "commit": "bc7987e4867bf90b43e4f60aac0a30194ac4b1e8",
-  "generated": "2026-07-06T03:44:12.384Z",
+  "commit": "9c6270045ec6cb88a034f7201bddd166a55e7399",
+  "generated": "2026-07-06T03:44:30.625Z",
   "media": [
     {
       "__outstatic": {
@@ -23,6 +23,18 @@
       "alt": "",
       "filename": "hero-cutout.png",
       "publishedAt": "2026-07-06T03:37:49.382Z",
+      "source": "images",
+      "type": "image"
+    },
+    {
+      "__outstatic": {
+        "commit": "9c6270045ec6cb88a034f7201bddd166a55e7399",
+        "hash": "2563223106",
+        "path": "public/images/larmora-logo-QyNT.png"
+      },
+      "alt": "",
+      "filename": "larmora-logo-QyNT.png",
+      "publishedAt": "2026-07-06T03:44:30.625Z",
       "source": "images",
       "type": "image"
     },
