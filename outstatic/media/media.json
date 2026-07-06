@@ -1,6 +1,6 @@
 {
-  "commit": "6d2b2cc87ceaa40d7e6dbbbc18dce80d058b6eb3",
-  "generated": "2026-07-06T03:43:51.223Z",
+  "commit": "bc7987e4867bf90b43e4f60aac0a30194ac4b1e8",
+  "generated": "2026-07-06T03:44:12.384Z",
   "media": [
     {
       "__outstatic": {
@@ -23,18 +23,6 @@
       "alt": "",
       "filename": "hero-cutout.png",
       "publishedAt": "2026-07-06T03:37:49.382Z",
-      "source": "images",
-      "type": "image"
-    },
-    {
-      "__outstatic": {
-        "commit": "6d2b2cc87ceaa40d7e6dbbbc18dce80d058b6eb3",
-        "hash": "3334376807",
-        "path": "public/images/whatsapp-image-2026-06-02-at-13.46.01-cxND.jpeg"
-      },
-      "alt": "",
-      "filename": "whatsapp-image-2026-06-02-at-13.46.01-cxND.jpeg",
-      "publishedAt": "2026-07-06T03:43:51.223Z",
       "source": "images",
       "type": "image"
     },
