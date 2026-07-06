@@ -29,6 +29,16 @@
       "required": false,
       "fieldType": "Image",
       "dataType": "image"
+    },
+    "techStack": {
+      "title": "TechStack",
+      "description": "",
+      "required": false,
+      "fieldType": "Array",
+      "dataType": "array",
+      "itemType": "String",
+      "minItems": 0,
+      "maxItems": 5
     }
   }
 }
