@@ -1,6 +1,13 @@
 {
   "title": "projects",
-  "slug": "projects",
   "type": "object",
-  "properties": {}
+  "properties": {
+    "description": {
+      "title": "description",
+      "description": "A short summary",
+      "required": false,
+      "fieldType": "String",
+      "dataType": "string"
+    }
+  }
 }
