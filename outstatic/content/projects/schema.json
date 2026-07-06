@@ -9,13 +9,6 @@
       "fieldType": "String",
       "dataType": "string"
     },
-    "techStack": {
-      "title": "TechStack",
-      "description": "",
-      "required": false,
-      "fieldType": "String",
-      "dataType": "string"
-    },
     "liveUrl": {
       "title": "LiveUrl",
       "description": "Link to the live site",
