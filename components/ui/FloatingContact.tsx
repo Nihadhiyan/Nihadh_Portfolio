@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, MessageSquare, X } from "lucide-react";
+import { Mail, MessageSquare, X, Download } from "lucide-react";
 import { SiWhatsapp, SiGithub } from "react-icons/si";
 import { RxLinkedinLogo } from "react-icons/rx";
 import { siteConfig } from "@/config/site";
@@ -15,6 +15,12 @@ interface ContactChannel {
 }
 
 const CHANNELS: ContactChannel[] = [
+  {
+    label: "Email",
+    href: siteConfig.contact.emailMailto,
+    icon: Mail,
+    color: "#38bdf8",
+  },
   {
     label: "GitHub",
     href: siteConfig.socials.github,
@@ -40,7 +46,7 @@ const CHANNELS: ContactChannel[] = [
  * Displays a single main trigger button by default. When hovered or clicked,
  * it expands vertically to reveal individual contact channels (Email, WhatsApp, GitHub).
  */
-export function FloatingContact() {
+export function FloatingContact({ cvUrl = "/Nihadh_CV.pdf" }: { cvUrl?: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -65,12 +71,25 @@ export function FloatingContact() {
   }, []);
 
   return (
-    <div
-      className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      aria-label="Quick contact links"
-    >
+    <>
+      {/* Persistent mobile-only CV download FAB — desktop already has one in the navbar */}
+      <a
+        href={cvUrl}
+        download="Nihadh_CV.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Download CV"
+        className="fixed bottom-24 left-4 z-50 flex h-12 w-12 md:hidden items-center justify-center rounded-full border border-cyan-400/50 bg-[#0a0f1d]/95 text-cyan-300 shadow-[0_0_20px_rgba(34,211,238,0.35)] backdrop-blur-md transition-transform active:scale-95"
+      >
+        <Download className="h-5 w-5" />
+      </a>
+
+      <div
+        className="fixed bottom-24 right-4 md:bottom-6 md:right-6 z-50 flex flex-col items-end gap-3"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        aria-label="Quick contact links"
+      >
       {/* Expandable Channel Stack */}
       <AnimatePresence>
         {isOpen && (
@@ -137,7 +156,8 @@ export function FloatingContact() {
           </AnimatePresence>
         </motion.button>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 

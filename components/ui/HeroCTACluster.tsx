@@ -202,7 +202,7 @@ function GhostLink({ href, children, download }: GhostLinkProps) {
 
 /* ── Main Hero CTA Cluster Component (Tactile Cybernetic Console) ── */
 
-export function HeroCTACluster() {
+export function HeroCTACluster({ cvUrl = "/Nihadh_CV.pdf" }: { cvUrl?: string }) {
   return (
     <div className="flex flex-col items-center gap-8 w-full">
       {/* Top: Decoder Status Badge */}
@@ -221,7 +221,11 @@ export function HeroCTACluster() {
           Access Archives
         </MagneticPlasmaButton>
 
-        <GhostLink href="/Nihadh_CV.pdf" download="Nihadh_CV.pdf">
+        <GhostLink href={siteConfig.contact.emailMailto}>
+          Establish Comm Channel
+        </GhostLink>
+
+        <GhostLink href={cvUrl} download="Nihadh_CV.pdf">
           RESUME // CV
         </GhostLink>
       </motion.div>

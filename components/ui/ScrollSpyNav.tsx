@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
-import { Home, User, Cpu, Terminal, Briefcase, BookOpen, Mail, Sun, Moon } from "lucide-react";
+import { Home, User, Cpu, Terminal, Briefcase, BookOpen, Mail, Sun, Moon, Download } from "lucide-react";
 import { usePixelTheme } from "@/components/theme/PixelTransitionProvider";
 
 export interface NavItem {
@@ -23,6 +23,7 @@ const DEFAULT_NAV_ITEMS: NavItem[] = [
 
 interface ScrollSpyNavProps {
   items?: NavItem[];
+  cvUrl?: string;
 }
 
 /**
@@ -34,7 +35,7 @@ interface ScrollSpyNavProps {
  * - Automatic Scroll-Spy section detection via IntersectionObserver.
  * - Liquid glowing pill background that glides smoothly to active or hovered tabs.
  */
-export function ScrollSpyNav({ items = DEFAULT_NAV_ITEMS }: ScrollSpyNavProps) {
+export function ScrollSpyNav({ items = DEFAULT_NAV_ITEMS, cvUrl = "/Nihadh_CV.pdf" }: ScrollSpyNavProps) {
   const [activeSection, setActiveSection] = useState<string>(items[0]?.href ?? "#home");
   const [hoveredSection, setHoveredSection] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -154,6 +155,20 @@ export function ScrollSpyNav({ items = DEFAULT_NAV_ITEMS }: ScrollSpyNavProps) {
           {/* Separator line */}
           <li className="h-5 w-[1px] bg-white/15 mx-2" aria-hidden="true" />
 
+          {/* Persistent CV Download */}
+          <li>
+            <a
+              href={cvUrl}
+              download="Nihadh_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Download CV"
+              className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] text-[var(--foreground)] shadow-sm transition-colors hover:border-cyan-400/50 hover:bg-cyan-500/10 hover:text-cyan-300"
+            >
+              <Download className="h-4 w-4" />
+            </a>
+          </li>
+
           {/* Integrated Theme Toggle */}
           <li>
             <ThemeToggleEl />
@@ -164,31 +179,28 @@ export function ScrollSpyNav({ items = DEFAULT_NAV_ITEMS }: ScrollSpyNavProps) {
       {/* ── MOBILE BOTTOM DOCK (flex on mobile, hidden on md+) ── */}
       <nav
         aria-label="Mobile Navigation Dock"
-        className={`fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex md:hidden items-center justify-between gap-1 rounded-full transition-all duration-500 ease-in-out w-[92vw] max-w-sm ${
+        className={`fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex md:hidden items-center rounded-full transition-all duration-500 ease-in-out w-[94vw] max-w-[420px] ${
           isScrolled
-            ? "border border-white/15 bg-[#0a0f1d]/95 p-1.5 shadow-[0_10px_35px_rgba(0,0,0,0.8)] backdrop-blur-2xl"
-            : "border border-white/10 bg-transparent p-2 backdrop-blur-md shadow-sm"
+            ? "border border-white/15 bg-[#0a0f1d]/95 p-1 shadow-[0_10px_35px_rgba(0,0,0,0.8)] backdrop-blur-2xl"
+            : "border border-white/10 bg-transparent p-1.5 backdrop-blur-md shadow-sm"
         }`}
       >
-        <ul className="flex items-center justify-around w-full relative">
+        <ul className="flex items-center justify-between w-full relative">
           {items.map((item) => {
             const isActive = activeSection === item.href;
 
             return (
-              <li key={item.href} className="relative flex-1 text-center">
+              <li key={item.href} className="relative">
                 <a
                   href={item.href}
                   onClick={() => setActiveSection(item.href)}
                   aria-label={item.label}
-                  className={`relative z-10 flex flex-col items-center justify-center py-1.5 px-2 rounded-full transition-colors ${
+                  className={`relative z-10 flex items-center justify-center h-9 w-9 rounded-full transition-colors ${
                     isActive ? "text-cyan-400" : "text-muted-foreground hover:text-[var(--foreground)]"
                   }`}
                 >
                   <span className={isActive ? "scale-110 transition-transform" : "opacity-70"}>
                     {item.icon}
-                  </span>
-                  <span className="text-[9px] font-mono tracking-tighter mt-0.5 truncate max-w-[48px]">
-                    {item.label}
                   </span>
                 </a>
 
@@ -209,10 +221,10 @@ export function ScrollSpyNav({ items = DEFAULT_NAV_ITEMS }: ScrollSpyNavProps) {
           })}
 
           {/* Separator line */}
-          <li className="h-6 w-[1px] bg-white/15 mx-1" aria-hidden="true" />
+          <li className="h-6 w-[1px] bg-white/15 shrink-0" aria-hidden="true" />
 
           {/* Integrated Theme Toggle for Mobile */}
-          <li className="shrink-0 pr-1">
+          <li className="shrink-0">
             <ThemeToggleEl />
           </li>
         </ul>

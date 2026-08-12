@@ -107,7 +107,7 @@ function InteractiveName() {
  * horizontally-rotating halo of tech-stack icons (see `HeadHalo`), the
  * wordmark, a cycling role badge, and primary calls to action.
  */
-export function HeroAngelRing() {
+export function HeroAngelRing({ cvUrl = "/Nihadh_CV.pdf" }: { cvUrl?: string }) {
   return (
     <section
       id="home"
@@ -154,7 +154,7 @@ export function HeroAngelRing() {
         </motion.p>
 
         <div className="mt-8 w-full flex justify-center">
-          <HeroCTACluster />
+          <HeroCTACluster cvUrl={cvUrl} />
         </div>
       </motion.div>
     </section>
