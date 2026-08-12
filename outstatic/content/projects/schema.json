@@ -1,0 +1,44 @@
+{
+  "title": "projects",
+  "type": "object",
+  "properties": {
+    "description": {
+      "title": "description",
+      "description": "A short summary",
+      "required": false,
+      "fieldType": "String",
+      "dataType": "string"
+    },
+    "liveUrl": {
+      "title": "LiveUrl",
+      "description": "Link to the live site",
+      "required": false,
+      "fieldType": "Text",
+      "dataType": "string"
+    },
+    "featured": {
+      "title": "Featured",
+      "description": "",
+      "required": false,
+      "fieldType": "Boolean",
+      "dataType": "boolean"
+    },
+    "coverImage": {
+      "title": "CoverImage",
+      "description": "",
+      "required": false,
+      "fieldType": "Image",
+      "dataType": "image"
+    },
+    "techStack": {
+      "title": "TechStack",
+      "description": "",
+      "required": false,
+      "fieldType": "Array",
+      "dataType": "array",
+      "itemType": "String",
+      "minItems": 0,
+      "maxItems": 5
+    }
+  }
+}

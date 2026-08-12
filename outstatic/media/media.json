@@ -1,0 +1,54 @@
+{
+  "commit": "9c6270045ec6cb88a034f7201bddd166a55e7399",
+  "generated": "2026-07-06T03:44:30.625Z",
+  "media": [
+    {
+      "__outstatic": {
+        "commit": "",
+        "hash": "3361900499",
+        "path": "public/images/hero-cutout-light.png"
+      },
+      "alt": "",
+      "filename": "hero-cutout-light.png",
+      "publishedAt": "2026-07-06T03:37:49.369Z",
+      "source": "images",
+      "type": "image"
+    },
+    {
+      "__outstatic": {
+        "commit": "",
+        "hash": "761578773",
+        "path": "public/images/hero-cutout.png"
+      },
+      "alt": "",
+      "filename": "hero-cutout.png",
+      "publishedAt": "2026-07-06T03:37:49.382Z",
+      "source": "images",
+      "type": "image"
+    },
+    {
+      "__outstatic": {
+        "commit": "9c6270045ec6cb88a034f7201bddd166a55e7399",
+        "hash": "2563223106",
+        "path": "public/images/larmora-logo-QyNT.png"
+      },
+      "alt": "",
+      "filename": "larmora-logo-QyNT.png",
+      "publishedAt": "2026-07-06T03:44:30.625Z",
+      "source": "images",
+      "type": "image"
+    },
+    {
+      "__outstatic": {
+        "commit": "",
+        "hash": "208699483",
+        "path": "public/images/zamzam-poster.png"
+      },
+      "alt": "",
+      "filename": "zamzam-poster.png",
+      "publishedAt": "2026-07-06T03:37:49.382Z",
+      "source": "images",
+      "type": "image"
+    }
+  ]
+}
