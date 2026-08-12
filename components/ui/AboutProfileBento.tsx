@@ -4,9 +4,22 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, Terminal, Code2, MapPin, GraduationCap, Globe, CheckCircle2 } from "lucide-react";
 import { WhoamiConsole } from "@/components/ui/WhoamiConsole";
+import type { GlobalConfig } from "@/lib/outstatic";
 
-export function AboutProfileBento() {
+export function AboutProfileBento({ config }: { config?: GlobalConfig | null }) {
   const [activeTab, setActiveTab] = useState<"profile" | "academics" | "focus">("profile");
+
+  const name = config?.name || "Mohamed Nihadh";
+  const bio =
+    config?.bio ||
+    "I am Mohamed Nihadh, a 3rd-year Software Engineering Undergraduate at the University of Kelaniya (UoK) — Dean's List, CGPA 3.91/4.00. I have hands-on experience building scalable backend systems using Java, Spring Boot, and PostgreSQL, including secure, event-driven pipelines with Apache Kafka. I'm currently seeking a Software Engineering internship to contribute, learn, and grow while building reliable products at scale.";
+  const location = config?.location || "Colombo, Sri Lanka";
+  const availabilityStatus = config?.availabilityStatus || "Seeking Internship";
+  const cgpa = config?.cgpa || "3.91 / 4.00";
+  const deansList = config?.deansList || "Dean's List (Year 1)";
+  const languages = config?.languages || "English, Sinhala, Tamil";
+  const systemsBuilt = config?.systemsBuilt || "12+";
+  const corePillars = config?.corePillars || "4";
 
   return (
     <div className="grid gap-6 lg:grid-cols-3">
@@ -26,11 +39,11 @@ export function AboutProfileBento() {
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-6">
             <div className="flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-medium text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
               <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-              Available for Internships & Collaborations
+              {availabilityStatus} & Open to Collaborations
             </div>
             <div className="flex items-center gap-2 text-xs font-mono text-muted">
               <MapPin className="h-3.5 w-3.5 text-cyan-400" />
-              Colombo, Sri Lanka • UTC+5:30
+              {location} • UTC+5:30
             </div>
           </div>
 
@@ -41,15 +54,13 @@ export function AboutProfileBento() {
 
           {/* Rich Bio Paragraphs */}
           <div className="mt-6 space-y-4 text-sm leading-relaxed text-gray-300 sm:text-base">
+            <p>{bio}</p>
             <p>
-              I am Nihad Nilabdeen, a 3rd-year Software Engineering Undergraduate at the{" "}
-              <span className="font-semibold text-white">University of Kelaniya (UoK)</span>, Sri Lanka. My passion lies in engineering robust systems from the ground up — whether designing high-concurrency web services, building data pipelines, or diving into hardware signal processing.
-            </p>
-            <p>
-              I specialize across three core pillars:{" "}
+              I specialize across four core pillars:{" "}
               <span className="rounded bg-cyan-500/10 px-1.5 py-0.5 text-cyan-300 font-mono text-xs border border-cyan-500/20">Net-Centric Applications</span>,{" "}
-              <span className="rounded bg-violet-500/10 px-1.5 py-0.5 text-violet-300 font-mono text-xs border border-violet-500/20">Data Science & Engineering</span>, and{" "}
-              <span className="rounded bg-fuchsia-500/10 px-1.5 py-0.5 text-fuchsia-300 font-mono text-xs border border-fuchsia-500/20">Business & Health Informatics</span>.
+              <span className="rounded bg-violet-500/10 px-1.5 py-0.5 text-violet-300 font-mono text-xs border border-violet-500/20">Business Engineering</span>,{" "}
+              <span className="rounded bg-fuchsia-500/10 px-1.5 py-0.5 text-fuchsia-300 font-mono text-xs border border-fuchsia-500/20">Data Science</span>, and{" "}
+              <span className="rounded bg-emerald-500/10 px-1.5 py-0.5 text-emerald-300 font-mono text-xs border border-emerald-500/20">Health Informatics</span>.
             </p>
           </div>
         </div>
@@ -57,13 +68,13 @@ export function AboutProfileBento() {
         {/* Feature Highlights Footer */}
         <div className="mt-8 grid grid-cols-2 gap-4 pt-6 border-t border-white/5 sm:grid-cols-3">
           <div className="flex items-center gap-2 text-xs font-medium text-gray-300">
-            <CheckCircle2 className="h-4 w-4 text-cyan-400 shrink-0" /> Full-Stack Architecture
+            <CheckCircle2 className="h-4 w-4 text-cyan-400 shrink-0" /> Event-Driven Architecture
           </div>
           <div className="flex items-center gap-2 text-xs font-medium text-gray-300">
-            <CheckCircle2 className="h-4 w-4 text-violet-400 shrink-0" /> Signal Processing & ML
+            <CheckCircle2 className="h-4 w-4 text-violet-400 shrink-0" /> RAG & Multimodal AI
           </div>
           <div className="flex items-center gap-2 text-xs font-medium text-gray-300 col-span-2 sm:col-span-1">
-            <CheckCircle2 className="h-4 w-4 text-fuchsia-400 shrink-0" /> Clinical EHR Systems
+            <CheckCircle2 className="h-4 w-4 text-fuchsia-400 shrink-0" /> Security & Identity (JWT/OAuth2)
           </div>
         </div>
       </motion.div>
@@ -105,11 +116,11 @@ export function AboutProfileBento() {
               <WhoamiConsole
                 command="whoami --verbose"
                 fields={[
-                  { label: "NAME", value: "Nihad Nilabdeen" },
+                  { label: "NAME", value: name },
                   { label: "ROLE", value: "Software Engineer (Y3)" },
-                  { label: "LOCATION", value: "Colombo, Sri Lanka" },
-                  { label: "LANGUAGES", value: "English, Sinhala" },
-                  { label: "STATUS", value: "Active / Building" },
+                  { label: "LOCATION", value: location },
+                  { label: "LANGUAGES", value: languages },
+                  { label: "STATUS", value: availabilityStatus },
                 ]}
               />
             )}
@@ -119,9 +130,9 @@ export function AboutProfileBento() {
                 fields={[
                   { label: "DEGREE", value: "B.Sc. (Hons) Software Eng." },
                   { label: "UNIVERSITY", value: "University of Kelaniya" },
-                  { label: "YEAR", value: "3rd Year Undergraduate" },
-                  { label: "RESEARCH", value: "RFID / Signal Processing" },
-                  { label: "FOCUS", value: "Systems Architecture" },
+                  { label: "CGPA", value: cgpa },
+                  { label: "HONORS", value: deansList },
+                  { label: "A/L", value: "Physical Science, Royal College" },
                 ]}
               />
             )}
@@ -130,9 +141,9 @@ export function AboutProfileBento() {
                 command="whoami --focus"
                 fields={[
                   { label: "PILLAR 01", value: "Net-Centric Applications" },
-                  { label: "PILLAR 02", value: "Data Science & Engineering" },
-                  { label: "PILLAR 03", value: "Health Informatics & EHR" },
-                  { label: "TECH STACK", value: "Next.js, Python, TS, Three.js" },
+                  { label: "PILLAR 02", value: "Business Engineering" },
+                  { label: "PILLAR 03", value: "Data Science & RAG/AI" },
+                  { label: "PILLAR 04", value: "Health Informatics" },
                 ]}
               />
             )}
@@ -163,15 +174,15 @@ export function AboutProfileBento() {
 
         <div className="my-6 grid grid-cols-3 gap-4 text-center divide-x divide-white/10">
           <div>
-            <div className="text-3xl font-extrabold text-white font-mono tracking-tight">03+</div>
-            <div className="mt-1 text-[11px] text-muted leading-tight">Years Coding</div>
+            <div className="text-3xl font-extrabold text-white font-mono tracking-tight">{cgpa.split(" ")[0]}</div>
+            <div className="mt-1 text-[11px] text-muted leading-tight">CGPA / 4.00</div>
           </div>
           <div className="pl-2">
-            <div className="text-3xl font-extrabold text-cyan-300 font-mono tracking-tight">10+</div>
+            <div className="text-3xl font-extrabold text-cyan-300 font-mono tracking-tight">{systemsBuilt}</div>
             <div className="mt-1 text-[11px] text-muted leading-tight">Systems Built</div>
           </div>
           <div className="pl-2">
-            <div className="text-3xl font-extrabold text-fuchsia-300 font-mono tracking-tight">03</div>
+            <div className="text-3xl font-extrabold text-fuchsia-300 font-mono tracking-tight">{corePillars}</div>
             <div className="mt-1 text-[11px] text-muted leading-tight">Core Pillars</div>
           </div>
         </div>
@@ -202,12 +213,12 @@ export function AboutProfileBento() {
           </div>
 
           <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-xs text-gray-300">
-            <Globe className="h-4 w-4 text-cyan-400" /> Bilingual: English & Sinhala
+            <Globe className="h-4 w-4 text-cyan-400" /> {languages}
           </div>
         </div>
 
         <div className="mt-6 flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-white/5 text-xs text-muted font-mono">
-          <span>Focusing on scalable software architectures & data-driven healthcare systems.</span>
+          <span>{deansList} • CGPA {cgpa} • Building scalable, event-driven backend systems.</span>
           <span className="text-cyan-300 font-semibold">EST. 2024 — PRESENT</span>
         </div>
       </motion.div>

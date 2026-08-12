@@ -4,7 +4,8 @@ import { ScrollSpyNav } from "@/components/ui/ScrollSpyNav";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { PixelTransition } from "@/components/ui/PixelTransition";
 import { PixelTransitionProvider } from "@/components/theme/PixelTransitionProvider";
-import "./globals.css";
+import { getGlobalConfig } from "@/lib/outstatic";
+import "../globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -41,6 +42,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const config = getGlobalConfig();
+  const cvUrl = config?.cvUrl || "/Nihadh_CV.pdf";
+
   return (
     // suppressHydrationWarning: next-themes sets the dark/light class on the
     // client before paint, which will legitimately differ from the server's
@@ -51,7 +55,7 @@ export default function RootLayout({
           <SmoothScrollProvider>
             {/* Pixel-grid unmask reveal, wraps the whole app shell */}
             <PixelTransition>
-              <ScrollSpyNav />
+              <ScrollSpyNav cvUrl={cvUrl} />
               <main className="relative min-h-screen">
                 {children}
               </main>

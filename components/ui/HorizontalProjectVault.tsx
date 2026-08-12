@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, type MouseEvent } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { Terminal, Cpu, ExternalLink, Code, Sparkles, Layers, Activity, Radio, Compass } from "lucide-react";
+import { THEMES } from "@/lib/project-themes";
 
 /* ── Project Archive Data ── */
 
@@ -13,6 +14,8 @@ export interface ProjectVaultItem {
   status: string;
   description: string;
   tags: string[];
+  repoUrl: string;
+  liveUrl?: string;
   theme: {
     accent: string;
     border: string;
@@ -23,89 +26,199 @@ export interface ProjectVaultItem {
   hudStats: { label: string; val: string }[];
 }
 
-const PROJECT_VAULT: ProjectVaultItem[] = [
+const DEFAULT_PROJECT_VAULT: ProjectVaultItem[] = [
   {
-    id: "zamzam-pos",
+    id: "local-rag-agent",
     index: "01",
-    title: "ZAM ZAM Super POS Automation",
-    status: "PRODUCTION // V2.0",
+    title: "Multimodal RAG Agent — Document Q&A",
+    status: "ACTIVE // AI",
     description:
-      "A modern retail Point of Sale system engineered with real-time inventory tracking, multi-register synchronization, and an intuitive, futuristic UI designed for ultra-fast checkout workflows.",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Firebase"],
-    theme: {
-      accent: "text-cyan-400",
-      border: "border-cyan-400/40 hover:border-cyan-400/80",
-      glow: "shadow-[0_0_35px_rgba(34,211,238,0.25)]",
-      badgeBg: "bg-cyan-500/15 text-cyan-300 border-cyan-400/40",
-      gradient: "from-cyan-500/30 via-blue-600/10 to-transparent",
-    },
+      "A multimodal Retrieval-Augmented Generation pipeline that extracts text, tables, and images from PDFs with hi-res title-based chunking. Gemini generates AI-enhanced searchable summaries of tables/images, embedded into a persistent ChromaDB store, with history-aware query rewriting, MMR retrieval, and an LCEL multimodal chain feeding Gemini for grounded answer synthesis.",
+    tags: ["Python", "LangChain (LCEL)", "ChromaDB", "Gemini"],
+    repoUrl: "https://github.com/Nihadhiyan/local-rag-agent",
+    theme: THEMES[0],
     hudStats: [
-      { label: "LATENCY", val: "< 12ms" },
-      { label: "SYNC", val: "REALTIME" },
-      { label: "UPTIME", val: "99.99%" },
+      { label: "RETRIEVAL", val: "MMR" },
+      { label: "MODEL", val: "GEMINI" },
+      { label: "VECTOR DB", val: "CHROMADB" },
     ],
   },
   {
-    id: "audio-analyzer",
+    id: "vektor-logistics-payout-engine",
     index: "02",
-    title: "Audio Signal Analyzer",
-    status: "RESEARCH // DSP",
+    title: "Vektor — Real-Time Logistics & Payout Engine",
+    status: "PRODUCTION // BACKEND",
     description:
-      "A high-performance Python system for extracting and analyzing complex audio features—including real-time MFCC extraction, harmonic pitch detection, and Fourier wave transformations for signal processing research.",
-    tags: ["Python", "Signal Processing", "NumPy", "MATLAB"],
-    theme: {
-      accent: "text-violet-400",
-      border: "border-violet-400/40 hover:border-violet-400/80",
-      glow: "shadow-[0_0_35px_rgba(139,92,246,0.25)]",
-      badgeBg: "bg-violet-500/15 text-violet-300 border-violet-400/40",
-      gradient: "from-violet-500/30 via-purple-600/10 to-transparent",
-    },
+      "Distributed backend pipeline separating high-velocity telemetry ingestion from batch financial processing, using Kafka (KRaft mode) to ingest real-time GPS/delivery events and a partitioned Spring Batch pipeline for daily driver payouts with zero-data-loss bank dispatch via the Transactional Outbox pattern. Dockerized, with a Python telemetry simulator, secured by Keycloak (OAuth2), Redis rate-limiting, and Resilience4j — observable via Prometheus, Grafana, and Loki.",
+    tags: ["Java", "Spring Boot", "Apache Kafka", "Docker", "Keycloak"],
+    repoUrl: "https://github.com/Nihadhiyan/Vektor-Real-Time-Logistics-Payout-Engine-",
+    theme: THEMES[1],
     hudStats: [
-      { label: "FFT_SIZE", val: "4096 PTS" },
-      { label: "MFCC_COEFF", val: "13 BANDS" },
-      { label: "ACCURACY", val: "99.4%" },
+      { label: "STREAMING", val: "KAFKA (KRAFT)" },
+      { label: "RESILIENCE", val: "RESILIENCE4J" },
+      { label: "OBSERVABILITY", val: "PROMETHEUS" },
     ],
   },
   {
-    id: "rfid-automation",
+    id: "reservation-system",
     index: "03",
-    title: "Hardware Automation & RFID Tracking",
-    status: "PROTOTYPE // HW",
+    title: "Enterprise Venue & Stall Reservation System",
+    status: "PRODUCTION // FULL-STACK",
     description:
-      "Advanced research and embedded prototyping of ultra-low-cost inventory tracking tags utilizing chipless RFID and graphene-based metamaterials, bridging physical electromagnetics with digital automation.",
-    tags: ["Hardware", "C", "RFID", "Physics"],
-    theme: {
-      accent: "text-emerald-400",
-      border: "border-emerald-400/40 hover:border-emerald-400/80",
-      glow: "shadow-[0_0_35px_rgba(16,185,129,0.25)]",
-      badgeBg: "bg-emerald-500/15 text-emerald-300 border-emerald-400/40",
-      gradient: "from-emerald-500/30 via-teal-600/10 to-transparent",
-    },
+      "A multi-tenant, event-driven Spring Boot backend with JWT auth, RBAC, AES-GCM PII encryption, Redis caching, Flyway migrations, and JPA locking to prevent double-booking under high load — plus Prometheus/Actuator monitoring and Stripe payment integration. Paired with a React + Tailwind frontend featuring an interactive SVG venue map and QR-based mobile check-in.",
+    tags: ["Java", "Spring Boot", "PostgreSQL", "Redis", "React"],
+    repoUrl: "https://github.com/Nihadhiyan/Reservation_System",
+    theme: THEMES[2],
     hudStats: [
-      { label: "FREQ_RANGE", val: "2.4 - 5.8 GHz" },
-      { label: "SUBSTRATE", val: "GRAPHENE" },
-      { label: "RANGE", val: "12 METERS" },
+      { label: "SECURITY", val: "AES-GCM" },
+      { label: "PAYMENTS", val: "STRIPE" },
+      { label: "CONCURRENCY", val: "JPA LOCKING" },
     ],
   },
   {
-    id: "larmora-suite",
+    id: "niluxos",
     index: "04",
-    title: "Larmora Enterprise Suite",
-    status: "ARCHITECTING // SUITE",
+    title: "NiluxOS — Custom 16-bit Operating System",
+    status: "PROTOTYPE // OS",
     description:
-      "Developing an ultra-scale unified business automation and ERP product architecture comprising three core autonomous engines: Opus (Workflow), Cantor (Analytics), and Torque (Resource Orchestration).",
-    tags: ["Enterprise Architecture", "AI Integration", "Next.js"],
-    theme: {
-      accent: "text-amber-400",
-      border: "border-amber-400/40 hover:border-amber-400/80",
-      glow: "shadow-[0_0_35px_rgba(245,158,11,0.25)]",
-      badgeBg: "bg-amber-500/15 text-amber-300 border-amber-400/40",
-      gradient: "from-amber-500/30 via-rose-600/10 to-transparent",
-    },
+      "A minimalist 16-bit operating system built as a learning project, featuring a custom bootloader and kernel to demonstrate fundamental OS concepts and low-level assembly programming.",
+    tags: ["Assembly", "C", "Bootloader", "Kernel"],
+    repoUrl: "https://github.com/Nihadhiyan/NiluxOS-Project",
+    theme: THEMES[3],
     hudStats: [
-      { label: "ENGINES", val: "3 AUTONOMOUS" },
-      { label: "TELEMETRY", val: "AI_GRAPH" },
-      { label: "SCALE", val: "MULTI-TENANT" },
+      { label: "ARCH", val: "16-BIT" },
+      { label: "BOOT", val: "CUSTOM" },
+      { label: "LEVEL", val: "LOW-LEVEL" },
+    ],
+  },
+  {
+    id: "sky-watch-system",
+    index: "05",
+    title: "Sky Watch System",
+    status: "PRODUCTION // IoT",
+    description:
+      "IoT weather-guard system: ESP32 sensors + Azure Functions decision engine (with satellite forecast) automatically protect a clothesline and window from rain, paired with a React live-monitoring dashboard.",
+    tags: ["ESP32", "Azure Functions", "React", "IoT"],
+    repoUrl: "https://github.com/Nihadhiyan/sky-watch-system",
+    liveUrl: "https://sky-watch-system-red.vercel.app",
+    theme: THEMES[0],
+    hudStats: [
+      { label: "SENSOR", val: "ESP32" },
+      { label: "CLOUD", val: "AZURE FN" },
+      { label: "FORECAST", val: "SATELLITE" },
+    ],
+  },
+  {
+    id: "reservation-system-frontend",
+    index: "06",
+    title: "Reservation System — Frontend",
+    status: "PRODUCTION // WEB",
+    description:
+      "The standalone React frontend repo for the reservation platform, with role-based portal experiences for customers, organizers, owners, vendors, and administrators, an interactive SVG venue map, and QR-based mobile check-in.",
+    tags: ["React", "Tailwind CSS", "Zustand"],
+    repoUrl: "https://github.com/Nihadhiyan/Reservation_System_Frontend",
+    theme: THEMES[1],
+    hudStats: [
+      { label: "ROLES", val: "5 PORTALS" },
+      { label: "STACK", val: "REACT" },
+      { label: "PAIRED WITH", val: "SPRING API" },
+    ],
+  },
+  {
+    id: "inmessage",
+    index: "07",
+    title: "inMessage",
+    status: "PRODUCTION // CHAT",
+    description:
+      "Real-time messaging app built with Node.js/Express and React, using Clerk for authentication and ImageKit for media/image handling.",
+    tags: ["Node.js", "Express", "React", "Clerk"],
+    repoUrl: "https://github.com/Nihadhiyan/inMessage",
+    theme: THEMES[2],
+    hudStats: [
+      { label: "AUTH", val: "CLERK" },
+      { label: "MEDIA", val: "IMAGEKIT" },
+      { label: "MODE", val: "REALTIME" },
+    ],
+  },
+  {
+    id: "urbanliving-android",
+    index: "08",
+    title: "UrbanLiving — Android UI",
+    status: "PROTOTYPE // MOBILE",
+    description:
+      "A Jetpack Compose Android app UI — landing screen built with Kotlin and Material3.",
+    tags: ["Kotlin", "Jetpack Compose", "Material3"],
+    repoUrl: "https://github.com/Nihadhiyan/UrbanLiving-Android",
+    theme: THEMES[3],
+    hudStats: [
+      { label: "PLATFORM", val: "ANDROID" },
+      { label: "UI KIT", val: "COMPOSE" },
+      { label: "DESIGN", val: "MATERIAL3" },
+    ],
+  },
+  {
+    id: "nishimo-toy-store",
+    index: "09",
+    title: "Nishimo Toy Store",
+    status: "PRODUCTION // E-COMMERCE",
+    description:
+      "PHP + MySQL e-commerce site for an online toy store, with product browsing/search, cart and checkout, customer accounts, and an admin panel for managing products and orders.",
+    tags: ["PHP", "MySQL"],
+    repoUrl: "https://github.com/Nihadhiyan/nishimo-toy-store",
+    theme: THEMES[0],
+    hudStats: [
+      { label: "BACKEND", val: "PHP" },
+      { label: "DATA", val: "MYSQL" },
+      { label: "MODULE", val: "ADMIN PANEL" },
+    ],
+  },
+  {
+    id: "core-erp",
+    index: "10",
+    title: "Core ERP",
+    status: "ARCHITECTING // CORE",
+    description:
+      "A C++ enterprise resource planning system core, focused on performant business-logic processing.",
+    tags: ["C++"],
+    repoUrl: "https://github.com/Nihadhiyan/core-erp",
+    theme: THEMES[1],
+    hudStats: [
+      { label: "LANGUAGE", val: "C++" },
+      { label: "DOMAIN", val: "ERP" },
+      { label: "FOCUS", val: "PERFORMANCE" },
+    ],
+  },
+  {
+    id: "uok-connect-student-portal",
+    index: "11",
+    title: "UOK Connect — Student Project Showcase Portal",
+    status: "PRODUCTION // TEAM",
+    description:
+      "A portal connecting students and recruiters at the University of Kelaniya — students publish projects, companies discover talent, and an additive-only admin panel avoids destructive schema changes. Built with Google OAuth login, Helmet/express-rate-limit/express-validator hardening, and deployed live on Vercel. Collaborated with a team of five to deliver the complete product.",
+    tags: ["React", "Node.js", "Express.js", "Passport.js"],
+    repoUrl: "https://github.com/BGYKanishka/Student_Project_Portal",
+    liveUrl: "https://student-project-portal-mu6m.vercel.app/",
+    theme: THEMES[2],
+    hudStats: [
+      { label: "AUTH", val: "GOOGLE OAUTH" },
+      { label: "TEAM", val: "5 ENGINEERS" },
+      { label: "HARDENING", val: "RATE-LIMITED" },
+    ],
+  },
+  {
+    id: "tea-collection-payment-system",
+    index: "12",
+    title: "TeaRoutePay — Tea Collection & Payment System",
+    status: "IN PROGRESS // TEAM",
+    description:
+      "An application streamlining tea leaf collection, farmer record management, deduction handling, and monthly payment processing for tea route operators — built to support both online and offline field operation.",
+    tags: ["Full-Stack", "Payments", "Offline-First"],
+    repoUrl: "https://github.com/seng31242-tea-route-pay-2026/tea-collection-payment-system",
+    theme: THEMES[3],
+    hudStats: [
+      { label: "MODE", val: "ONLINE + OFFLINE" },
+      { label: "DOMAIN", val: "AGRI-FINTECH" },
+      { label: "SCOPE", val: "TEAM PROJECT" },
     ],
   },
 ];
@@ -268,7 +381,7 @@ function ProjectCard({
           <div className="flex flex-wrap items-center gap-4 pt-2">
             {/* Initialize Sequence Button (GitHub / Source) */}
             <a
-              href="https://github.com/Nihadh"
+              href={project.repoUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="group relative flex items-center gap-2.5 rounded-xl border border-white/20 bg-white/5 px-5 py-3 font-mono text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 hover:border-cyan-400 hover:bg-cyan-400/15 hover:text-cyan-300 hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] active:scale-95"
@@ -279,14 +392,18 @@ function ProjectCard({
             </a>
 
             {/* Deploy Terminal Button (Live Demo) */}
-            <a
-              href="#"
-              className="group relative flex items-center gap-2.5 rounded-xl border border-cyan-400/50 bg-gradient-to-r from-cyan-500/20 via-violet-500/20 to-cyan-500/20 px-5 py-3 font-mono text-xs font-bold uppercase tracking-wider text-cyan-300 transition-all duration-300 hover:border-cyan-400 hover:from-cyan-500/30 hover:to-violet-500/30 hover:shadow-[0_0_25px_rgba(34,211,238,0.5)] active:scale-95"
-            >
-              <Terminal className="h-4 w-4 text-cyan-300 animate-pulse" />
-              <span>DEPLOY TERMINAL</span>
-              <Sparkles className="h-3.5 w-3.5 opacity-70 group-hover:rotate-45 transition-transform" />
-            </a>
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative flex items-center gap-2.5 rounded-xl border border-cyan-400/50 bg-gradient-to-r from-cyan-500/20 via-violet-500/20 to-cyan-500/20 px-5 py-3 font-mono text-xs font-bold uppercase tracking-wider text-cyan-300 transition-all duration-300 hover:border-cyan-400 hover:from-cyan-500/30 hover:to-violet-500/30 hover:shadow-[0_0_25px_rgba(34,211,238,0.5)] active:scale-95"
+              >
+                <Terminal className="h-4 w-4 text-cyan-300 animate-pulse" />
+                <span>DEPLOY TERMINAL</span>
+                <Sparkles className="h-3.5 w-3.5 opacity-70 group-hover:rotate-45 transition-transform" />
+              </a>
+            )}
           </div>
         </div>
 
@@ -298,7 +415,8 @@ function ProjectCard({
 
 /* ── Main Cinematic Horizontal Parallax Vault Component ── */
 
-export function HorizontalProjectVault() {
+export function HorizontalProjectVault({ projects }: { projects?: ProjectVaultItem[] }) {
+  const vault = projects && projects.length > 0 ? projects : DEFAULT_PROJECT_VAULT;
   const targetRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [scrollRange, setScrollRange] = useState(0);
@@ -315,7 +433,7 @@ export function HorizontalProjectVault() {
         const cardWidth = window.innerWidth >= 1024 ? 904 : 728;
         const totalWidth = Math.max(
           trackRef.current.scrollWidth,
-          PROJECT_VAULT.length * cardWidth
+          vault.length * cardWidth
         );
         const viewportWidth = window.innerWidth;
         setScrollRange(Math.max(0, totalWidth - viewportWidth + 120));
@@ -384,7 +502,7 @@ export function HorizontalProjectVault() {
             style={{ x: xTranslate }}
             className="flex items-center gap-12 lg:gap-16 pt-16"
           >
-            {PROJECT_VAULT.map((project, idx) => (
+            {vault.map((project, idx) => (
               <ProjectCard
                 key={project.id}
                 project={project}
@@ -405,7 +523,7 @@ export function HorizontalProjectVault() {
                 className="h-full origin-left bg-gradient-to-r from-cyan-400 via-violet-500 to-cyan-400 shadow-[0_0_12px_#22d3ee]"
               />
             </div>
-            <span className="font-mono text-[10px] text-muted-foreground font-bold">04</span>
+            <span className="font-mono text-[10px] text-muted-foreground font-bold">{String(vault.length).padStart(2, "0")}</span>
           </div>
 
         </div>
@@ -416,7 +534,7 @@ export function HorizontalProjectVault() {
       <div className="block md:hidden mx-auto max-w-xl px-6 py-10 bg-[var(--background)] transition-colors duration-500">
 
         <div className="space-y-12">
-          {PROJECT_VAULT.map((project, idx) => (
+          {vault.map((project, idx) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 40 }}
@@ -467,7 +585,7 @@ export function HorizontalProjectVault() {
 
                 <div className="flex flex-col gap-2 pt-4 border-t border-white/10">
                   <a
-                    href="https://github.com/Nihadh"
+                    href={project.repoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 py-2.5 font-mono text-xs font-bold text-white uppercase"
@@ -476,13 +594,17 @@ export function HorizontalProjectVault() {
                     <span>INITIALIZE SEQUENCE</span>
                   </a>
 
-                  <a
-                    href="#"
-                    className="flex items-center justify-center gap-2 rounded-xl border border-cyan-400/50 bg-cyan-500/20 py-2.5 font-mono text-xs font-bold text-cyan-300 uppercase"
-                  >
-                    <Terminal className="h-4 w-4 text-cyan-300" />
-                    <span>DEPLOY TERMINAL</span>
-                  </a>
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 rounded-xl border border-cyan-400/50 bg-cyan-500/20 py-2.5 font-mono text-xs font-bold text-cyan-300 uppercase"
+                    >
+                      <Terminal className="h-4 w-4 text-cyan-300" />
+                      <span>DEPLOY TERMINAL</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>

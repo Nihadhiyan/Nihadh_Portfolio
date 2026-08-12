@@ -1,0 +1,21 @@
+---
+name: "Mohamed Nihadh"
+title: "Software Engineer & Systems Architect"
+bio: "I am Mohamed Nihadh, a 3rd-year Software Engineering Undergraduate at the University of Kelaniya (UoK) — Dean's List, CGPA 3.91/4.00. I have hands-on experience building scalable backend systems using Java, Spring Boot, and PostgreSQL, including secure, event-driven pipelines with Apache Kafka. I'm currently seeking a Software Engineering internship to contribute, learn, and grow while building reliable products at scale."
+cvUrl: "/Nihadh_CV.pdf"
+avatarUrl: ""
+email: "nihath854@gmail.com"
+location: "Colombo, Sri Lanka"
+availabilityStatus: "Seeking Internship"
+cgpa: "3.91 / 4.00"
+deansList: "Dean's List (Year 1)"
+languages: "English, Sinhala, Tamil"
+yearsCoding: "3+"
+systemsBuilt: "12+"
+corePillars: "4"
+socials:
+  github: "https://github.com/Nihadhiyan"
+  linkedin: "https://linkedin.com/in/Nihadhiyan"
+  medium: "https://medium.com/@Nihadhiyan"
+status: "published"
+---

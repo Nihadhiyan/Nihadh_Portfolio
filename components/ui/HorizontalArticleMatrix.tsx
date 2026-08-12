@@ -35,81 +35,81 @@ export interface ArticleMatrixItem {
   tags: string[];
 }
 
-const ARTICLES: ArticleMatrixItem[] = [
+const DEFAULT_ARTICLES: ArticleMatrixItem[] = [
   {
     id: "art-1",
-    title: "Architecting Scalable ERP Systems with Next.js & TypeScript",
-    readTime: "7 MIN READ",
-    date: "JUN 2026",
+    title: "Undergraduate Research Symposium and Innovation Exhibition (URSIE 2025) by ICAPS",
+    readTime: "3 MIN READ",
+    date: "DEC 2025",
     platform: "MEDIUM",
     platformIcon: "medium",
-    link: "https://medium.com",
-    image: "/images/zamzam-poster.png",
+    link: "https://medium.com/@Nihadhiyan/undergraduate-research-symposium-and-innovation-exhibition-ursie-2025-by-icaps-2545662336cf",
+    image: "https://cdn-images-1.medium.com/max/1024/1*FWZV3ZnS9tfcYWXZ7FdXLg.png",
     summary:
-      "A deep-dive into enterprise resource planning architectures using server components, edge functions, and type-safe data layers.",
+      "A look back at URSIE 2025, held at the University of Kelaniya, showcasing research and technical prototypes built by final-year students.",
     abstract:
-      "Modern ERP systems require real-time synchronization, high-frequency transaction logging, and uncompromising type safety across distributed boundaries. In this architectural breakdown, we explore how Next.js App Router, React Server Components, and Edge SQL adapters unify to deliver sub-50ms latency for global supply chain workflows.",
-    tags: ["Next.js", "TypeScript", "Architecture", "ERP", "Edge SQL"],
+      "The Undergraduate Research Symposium and Innovation Exhibition (URSIE 2025) was held at the University of Kelaniya, giving a chance to see the research and technical prototypes developed by final-year students across the engineering faculty, organized by ICAPS.",
+    tags: ["Research", "ICAPS", "University of Kelaniya"],
   },
   {
     id: "art-2",
-    title: "Real-Time Audio Signal Processing & MFCC Feature Extraction",
-    readTime: "12 MIN READ",
-    date: "APR 2026",
-    platform: "DEV.TO",
-    platformIcon: "devto",
-    link: "https://dev.to",
-    image: "/images/Event/AZRAEL 6.0 Group.jpg",
+    title: "Building Nilux OS — My First Operating System",
+    readTime: "6 MIN READ",
+    date: "JUN 2025",
+    platform: "MEDIUM",
+    platformIcon: "medium",
+    link: "https://medium.com/@Nihadhiyan/building-nilux-os-my-first-operating-system-847fb2dca74b",
+    image: "https://cdn-images-1.medium.com/max/1024/1*0UEm660XGxfTXIYvNqmJsg.png",
     summary:
-      "Exploring mel-frequency cepstral coefficients for speech recognition pipelines using Python, NumPy, and librosa.",
+      "Operating systems are the pulse of every computer — a walkthrough of building a custom bootloader and kernel from scratch.",
     abstract:
-      "Extracting speech biomarkers in noisy environments demands robust digital filtering and real-time spectral analysis. We implement a custom fast Fourier transform (FFT) pipeline in Python, deriving MFCC feature vectors with zero-latency streaming buffers for neural audio classification.",
-    tags: ["Python", "NumPy", "Librosa", "Signal Processing", "ML"],
+      "Operating systems are essentially the pulse of every computer, and yet almost everyone uses one without understanding how it works underneath. This article walks through building NiluxOS, a minimalist 16-bit operating system with a custom bootloader and kernel written in assembly, from first principles.",
+    tags: ["Operating Systems", "Assembly", "Low-Level"],
   },
   {
     id: "art-3",
-    title: "Chipless RFID & Graphene Sensors in Healthcare Systems",
-    readTime: "15 MIN READ",
-    date: "JAN 2026",
-    platform: "IEEE XPLORE",
-    platformIcon: "ieee",
-    link: "https://ieeexplore.ieee.org",
-    image: "/images/Event/IEEE Newbies .jpg",
+    title: "Understanding Software Licensing: What Every User Should Know",
+    readTime: "5 MIN READ",
+    date: "MAY 2025",
+    platform: "MEDIUM",
+    platformIcon: "medium",
+    link: "https://medium.com/@Nihadhiyan/understanding-software-licensing-13557907c82e",
+    image: "https://cdn-images-1.medium.com/max/1024/1*RqHYaVOt9S7phoLI5LLwrQ.jpeg",
     summary:
-      "Investigating next-gen chipless RFID tracking paired with graphene-based biosensors for modern hospital informatics.",
+      "Software exists in every sphere of life — a breakdown of licensing models every developer and user should understand.",
     abstract:
-      "Traditional RFID tags suffer from silicon cost and rigidity constraints in medical environments. By synthesizing printable graphene nanoparticle antennas on flexible substrates, we demonstrate chipless backscatter interrogation that simultaneously senses patient temperature and vital signs.",
-    tags: ["RFID", "Graphene", "Healthcare", "IoT", "Biomedical"],
+      "Today, software exists in every sphere, personal and professional. It would be practically impossible to imagine a world without software, from operating systems to productivity tools. This article breaks down the major software licensing models and what every user and developer should know before shipping or using software.",
+    tags: ["Licensing", "Legal", "Software"],
   },
   {
     id: "art-4",
-    title: "Zero-CLS Theme Architecture & Pixel-Chip Flip Transitions",
-    readTime: "9 MIN READ",
-    date: "NOV 2025",
+    title: "Stored Procedures in MySQL",
+    readTime: "4 MIN READ",
+    date: "JAN 2025",
     platform: "MEDIUM",
     platformIcon: "medium",
-    link: "https://medium.com",
-    image: "/images/Event/AZRAEL 6.0 Ind.jpg",
+    link: "https://medium.com/@Nihadhiyan/stored-procedures-in-mysql-2f4b629fc1a1",
+    image: "https://cdn-images-1.medium.com/max/1024/1*PgEMoaL5jmJ-Czzuh2AY9w.jpeg",
     summary:
-      "Building a zero cumulative layout shift theme system with GPU-accelerated 3D tile flip transitions in Next.js.",
+      "MySQL stored procedures let developers encapsulate repetitive SQL queries and business logic inside the database itself.",
     abstract:
-      "Theme switching in complex web applications often induces layout thrashing and jarring flash-of-unstyled-content (FOUC). We detail a hardware-accelerated CSS Grid tessellation technique that offloads 3D matrix transformations to the GPU while suppressing global CSS transitions.",
-    tags: ["CSS Grid", "Framer Motion", "Performance", "WebGL", "60fps"],
+      "MySQL stored procedures allow the developer to encapsulate repetitive SQL queries with the business logic into the database itself. Stored procedures simplify application development, reduce network round-trips, and centralize logic that would otherwise be duplicated across application code.",
+    tags: ["MySQL", "SQL", "Backend"],
   },
   {
     id: "art-5",
-    title: "Net-Centric WebSockets & Event-Driven Microservices",
-    readTime: "10 MIN READ",
-    date: "SEP 2025",
-    platform: "DEV.TO",
-    platformIcon: "devto",
-    link: "https://dev.to",
-    image: "/images/Event/IEEE Newbies  2.jpg",
+    title: "The CIA Triad",
+    readTime: "3 MIN READ",
+    date: "JUL 2024",
+    platform: "MEDIUM",
+    platformIcon: "medium",
+    link: "https://medium.com/@Nihadhiyan/the-cia-triad-c05b3e0067b2",
+    image: "https://cdn-images-1.medium.com/max/1024/1*UNKWIISapWFxmJ6adIkJwQ.png",
     summary:
-      "High-throughput real-time communication patterns using WebSocket clusters, Redis pub/sub, and event-driven service meshes.",
+      "An overview of the CIA triad — the widely used information security model used by cybersecurity professionals.",
     abstract:
-      "Scaling WebSocket connections across ephemeral container orchestration clusters requires distributed state coordination. This article outlines a resilient event-driven broker architecture utilizing Redis Pub/Sub channels and heartbeat backpressure mechanisms.",
-    tags: ["WebSockets", "Microservices", "Redis", "Distributed Systems"],
+      "What is the CIA triad? The CIA triad is a widely used information security model used by cybersecurity professionals for auditing, implementing, and improving systems, tools, and programs for organizational security.",
+    tags: ["Security", "CIA Triad", "InfoSec"],
   },
 ];
 
@@ -124,7 +124,8 @@ const ARTICLES: ArticleMatrixItem[] = [
  *   to ensure zero text reflow or squishing during spring width animations.
  * - Mobile (< lg): Gracefully degrades into a clean, fully-expanded vertical card stack.
  */
-export function HorizontalArticleMatrix() {
+export function HorizontalArticleMatrix({ articles }: { articles?: ArticleMatrixItem[] }) {
+  const items = articles && articles.length > 0 ? articles : DEFAULT_ARTICLES;
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
@@ -138,8 +139,8 @@ export function HorizontalArticleMatrix() {
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     if (typeof window !== "undefined" && window.innerWidth >= 768) {
       const idx = Math.min(
-        ARTICLES.length - 1,
-        Math.floor(latest * ARTICLES.length)
+        items.length - 1,
+        Math.floor(latest * items.length)
       );
       setActiveIndex(Math.max(0, idx));
     }
@@ -163,7 +164,7 @@ export function HorizontalArticleMatrix() {
 
         {/* ── DESKTOP/TABLET: Horizontal Flex Accordion (>= md) ── */}
         <div className="hidden md:flex flex-row gap-4 h-[78vh] min-h-[600px] max-h-[900px] max-w-7xl xl:max-w-[1500px] w-full mx-auto px-6">
-          {ARTICLES.map((article, idx) => {
+          {items.map((article, idx) => {
             const isActive = activeIndex === idx;
 
             return (
@@ -343,7 +344,7 @@ export function HorizontalArticleMatrix() {
 
         {/* ── MOBILE: Graceful Vertical Stack (< md) ── */}
         <div className="flex flex-col gap-8 md:hidden max-w-3xl mx-auto px-6">
-          {ARTICLES.map((article, idx) => (
+          {items.map((article, idx) => (
             <div
               key={article.id}
               className="rounded-3xl border border-white/15 bg-[#050811] overflow-hidden shadow-xl"

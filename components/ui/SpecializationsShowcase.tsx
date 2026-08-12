@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Network, Cpu, Activity, Server, Database, HeartPulse, ArrowUpRight } from "lucide-react";
+import { Network, Cpu, Activity, Server, Database, HeartPulse, Briefcase, ArrowUpRight } from "lucide-react";
 
 interface SpecializationCard {
   id: string;
@@ -11,7 +11,7 @@ interface SpecializationCard {
   icon: React.ReactNode;
   tags: string[];
   gradient: string;
-  visualType: "network" | "signal" | "health";
+  visualType: "network" | "signal" | "health" | "business";
 }
 
 const SPECIALIZATIONS: SpecializationCard[] = [
@@ -27,19 +27,30 @@ const SPECIALIZATIONS: SpecializationCard[] = [
     visualType: "network",
   },
   {
-    id: "data-science",
-    title: "Data Science & Engineering",
-    subtitle: "Big Data, ML & Signal Processing",
+    id: "business-engineering",
+    title: "Business Engineering",
+    subtitle: "Backend Systems & Event-Driven Pipelines",
     description:
-      "Building predictive data pipelines, numerical feature extraction models, and advanced audio/digital signal processing algorithms using Python, NumPy, and MATLAB.",
+      "Building scalable backend systems with Java, Spring Boot, and PostgreSQL, including secure, event-driven pipelines with Apache Kafka for reliable production-grade products.",
+    icon: <Briefcase className="h-6 w-6 text-amber-400" />,
+    tags: ["Spring Boot", "Apache Kafka", "Event-Driven", "PostgreSQL", "OAuth2/JWT"],
+    gradient: "from-amber-500/20 via-orange-500/10 to-transparent",
+    visualType: "business",
+  },
+  {
+    id: "data-science",
+    title: "Data Science",
+    subtitle: "RAG Pipelines & Multimodal AI",
+    description:
+      "Building retrieval-augmented generation pipelines, multimodal document understanding with LangChain and Gemini, and vector-search-backed data systems.",
     icon: <Cpu className="h-6 w-6 text-violet-400" />,
-    tags: ["Signal Processing", "Predictive ML", "NumPy & MATLAB", "Feature Extraction", "Big Data"],
+    tags: ["RAG", "LangChain", "Multimodal AI", "ChromaDB", "Python"],
     gradient: "from-violet-500/20 via-purple-500/10 to-transparent",
     visualType: "signal",
   },
   {
     id: "health-informatics",
-    title: "Business & Health Informatics",
+    title: "Health Informatics",
     subtitle: "Clinical Systems & Enterprise Workflow",
     description:
       "Bridging complex business logic with mission-critical healthcare data systems, optimizing clinical data interoperability, electronic health records (EHR), and decision support.",
@@ -52,7 +63,7 @@ const SPECIALIZATIONS: SpecializationCard[] = [
 
 export function SpecializationsShowcase() {
   return (
-    <div className="grid gap-6 lg:grid-cols-3">
+    <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
       {SPECIALIZATIONS.map((spec, idx) => (
         <motion.div
           key={spec.id}
@@ -96,6 +107,7 @@ export function SpecializationsShowcase() {
               {spec.visualType === "network" && <NetworkVisual />}
               {spec.visualType === "signal" && <SignalVisual />}
               {spec.visualType === "health" && <HealthVisual />}
+              {spec.visualType === "business" && <BusinessVisual />}
             </div>
 
             {/* Description */}
@@ -159,6 +171,34 @@ function SignalVisual() {
           className="w-1.5 rounded-full bg-gradient-to-t from-violet-600 via-purple-400 to-cyan-300 shadow-[0_0_8px_rgba(168,85,247,0.5)]"
         />
       ))}
+    </div>
+  );
+}
+
+function BusinessVisual() {
+  return (
+    <div className="relative flex w-full items-center justify-around">
+      <div className="flex items-center gap-3">
+        <span className="flex h-9 w-9 items-center justify-center rounded-full border border-amber-500/40 bg-amber-500/10 text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.3)]">
+          <Briefcase className="h-4 w-4" />
+        </span>
+        <motion.span
+          animate={{ opacity: [0.3, 1, 0.3] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+          className="h-0.5 w-8 bg-gradient-to-r from-amber-500 to-orange-500"
+        />
+        <span className="flex h-11 w-11 animate-pulse items-center justify-center rounded-full border border-orange-500/40 bg-orange-500/10 text-orange-400">
+          <Server className="h-5 w-5" />
+        </span>
+        <motion.span
+          animate={{ opacity: [0.3, 1, 0.3] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+          className="h-0.5 w-8 bg-gradient-to-r from-orange-500 to-amber-500"
+        />
+        <span className="flex h-9 w-9 items-center justify-center rounded-full border border-amber-500/40 bg-amber-500/10 text-amber-400">
+          <Database className="h-4 w-4" />
+        </span>
+      </div>
     </div>
   );
 }

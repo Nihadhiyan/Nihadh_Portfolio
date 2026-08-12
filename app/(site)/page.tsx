@@ -4,13 +4,15 @@ import { CircuitTrace } from "@/components/ui/CircuitTrace";
 import { AboutProfileBento } from "@/components/ui/AboutProfileBento";
 import { SpecializationsShowcase } from "@/components/ui/SpecializationsShowcase";
 import { SkillsBentoGrid } from "@/components/ui/SkillsBentoGrid";
-import { HorizontalProjectVault } from "@/components/ui/HorizontalProjectVault";
 import { HorizontalArticleMatrix } from "@/components/ui/HorizontalArticleMatrix";
 import { VelocityEventTape } from "@/components/ui/VelocityEventTape";
 import { ContactSection } from "@/components/ui/ContactSection";
 import { MonolithFooter } from "@/components/ui/MonolithFooter";
 import { FloatingContact } from "@/components/ui/FloatingContact";
 import { FadeIn } from "@/components/animations/FadeIn";
+import { HorizontalProjectVault } from "@/components/ui/HorizontalProjectVault";
+import { getPublishedProjects, getPublishedArticles, getGlobalConfig } from "@/lib/outstatic";
+import { mapProjectsToVaultItems, mapArticlesToMatrixItems } from "@/lib/cms-adapters";
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
@@ -22,12 +24,16 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 }
 
 export default function Home() {
+  const cmsProjects = mapProjectsToVaultItems(getPublishedProjects());
+  const cmsArticles = mapArticlesToMatrixItems(getPublishedArticles());
+  const config = getGlobalConfig();
+
   return (
     <div className="relative min-h-screen overflow-x-clip text-[var(--foreground)] transition-colors duration-500">
       {/* Main Content Wrapper for Curtain Reveal Trick (mb-[80vh] on md+ exposes fixed footer underneath) */}
       <div className="relative z-30 bg-[var(--background)] md:mb-[80vh] shadow-[0_50px_100px_rgba(0,0,0,0.95)] transition-colors duration-500">
         {/* ═══ HERO — Angel Ring Dual-Orbit Halo & Cutout Portrait ═══ */}
-        <HeroAngelRing />
+        <HeroAngelRing cvUrl={config?.cvUrl || "/Nihadh_CV.pdf"} />
 
         {/* Cybernetic Circuit Trace background divider */}
         <CircuitTrace />
@@ -45,7 +51,7 @@ export default function Home() {
           </FadeIn>
 
           <FadeIn amount={0.15} delay={0.15} className="mt-12">
-            <AboutProfileBento />
+            <AboutProfileBento config={config} />
           </FadeIn>
         </section>
 
@@ -57,7 +63,7 @@ export default function Home() {
               Engineering Pillars
             </h2>
             <p className="mt-3 max-w-xl text-sm text-muted md:text-base">
-              Specialized domain expertise spanning network architecture, data science &amp; machine learning, and enterprise healthcare informatics.
+              Specialized domain expertise spanning net-centric architecture, event-driven business engineering, RAG/AI data science, and enterprise healthcare informatics.
             </p>
           </FadeIn>
 
@@ -95,7 +101,7 @@ export default function Home() {
             </p>
           </FadeIn>
         </section>
-        <HorizontalProjectVault />
+        <HorizontalProjectVault projects={cmsProjects} />
 
         {/* ═══ FIELD OPERATIONS — Velocity Marquee for Engagements (05) ═══ */}
         <section id="engagements" className="mx-auto max-w-7xl xl:max-w-[1500px] px-6 pt-24 pb-8 relative z-10">
@@ -125,7 +131,7 @@ export default function Home() {
             </p>
           </FadeIn>
         </section>
-        <HorizontalArticleMatrix />
+        <HorizontalArticleMatrix articles={cmsArticles} />
 
         {/* ═══ CONTACT — Secure Uplink Dossier Form ═══ */}
         <section id="contact" className="relative z-10 py-24">
@@ -134,7 +140,7 @@ export default function Home() {
       </div>
 
       {/* ═══ FLOATING SPEED DIAL CONTACT BUTTON ═══ */}
-      <FloatingContact />
+      <FloatingContact cvUrl={config?.cvUrl || "/Nihadh_CV.pdf"} />
 
       {/* ═══ FOOTER — The Cinematic Curtain Reveal & Magnetic Monolith ═══ */}
       <MonolithFooter />

@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../node_modules/outstatic";
 
 
 /* Ties Tailwind's `dark:` variant to the .dark class next-themes manages,

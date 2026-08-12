@@ -427,6 +427,13 @@ export function SecureUplinkForm() {
                   <span>{siteConfig.socials.linkedin.replace("https://", "")}</span>
                   <ExternalLink className="h-3.5 w-3.5 opacity-60" />
                 </MagneticPill>
+
+                {/* WhatsApp Pill */}
+                <MagneticPill href={siteConfig.contact.whatsappUrl}>
+                  <MessageSquare className="h-4 w-4 text-emerald-400" />
+                  <span>{siteConfig.contact.whatsappNumber}</span>
+                  <ExternalLink className="h-3.5 w-3.5 opacity-60" />
+                </MagneticPill>
               </div>
             </div>
           </div>
